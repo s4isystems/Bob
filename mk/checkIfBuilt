@@ -1,13 +1,14 @@
 #!/usr/bin/bash
 if [[ ! -e /QSYS.LIB/${2}.LIB/${1} ]]; then
    echo "Build not successful for ${2}/${1}"
-   if [[ -e /QSYS.LIB/QTEMP.LIB/${1} ]]; then
-      mv /QSYS.LIB/QTEMP.LIB/${1} /QSYS.LIB/${2}.LIB
+   if [[ -e /QSYS.LIB/QMRLTEMP.LIB/${1} ]]; then
+      #mv /QSYS.LIB/QMRLTEMP.LIB/${1} /QSYS.LIB/${2}.LIB
+      cl MOVOBJ OBJ(QMRLTEMP/${1}) OBJTYPE(*FILE) TOLIB($(2))
    fi
 else
    echo "Build successful for ${2}/${1}"
-   if [[ -e /QSYS.LIB/QTEMP.LIB/${1} ]]; then
-      rm -f /QSYS.LIB/QTEMP.LIB/${1}
+   if [[ -e /QSYS.LIB/QMRLTEMP.LIB/${1} ]]; then
+      rm -f /QSYS.LIB/QMRLTEMP.LIB/${1}
    fi
 fi
 exit $?

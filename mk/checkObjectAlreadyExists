@@ -1,10 +1,10 @@
 #!/QOpenSys/pkgs/bin/bash
 if [[ -e /QSYS.LIB/${2}.LIB/${1} ]]; then
    echo "Object ${2}/${1} exists"
-   if [[ -e /QSYS.LIB/QTEMP.LIB/${1} ]]; then
-      rm -f /QSYS.LIB/QTEMP.LIB/${1}
+   if [[ -e /QSYS.LIB/QMRLTEMP.LIB/${1} ]]; then
+      rm -f /QSYS.LIB/QMRLTEMP.LIB/${1}
    fi
-   mv -f /QSYS.LIB/${2}.LIB/${1} /QSYS.LIB/QTEMP.LIB
+   cl MOVOBJ OBJ(${2}/${1}) OBJTYPE(*FILE) TOLIB(QMRLTEMP)
 else 
    echo "Object ${2}/${1} does not exist so should build"
 fi 
